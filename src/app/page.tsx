@@ -41,8 +41,8 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-10">
-          <h1 className="text-5xl font-bold tracking-tight mb-3">🎤 Unconference</h1>
-          <p className="text-[var(--text-muted)] text-lg">Ingresa con tu nombre para empezar</p>
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-3">🎤 Unconference</h1>
+          <p className="text-[var(--text-muted)] text-base sm:text-lg">Ingresa con tu nombre para empezar</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -52,7 +52,7 @@ export default function LoginPage() {
             onChange={(e) => setName(e.target.value)}
             placeholder="Tu nombre completo"
             autoFocus
-            className="w-full px-5 py-4 rounded-xl bg-[var(--bg-card)] border border-[var(--border)] text-lg
+            className="w-full px-5 py-4 rounded-xl bg-[var(--bg-card)] border border-[var(--border)] text-base sm:text-lg
               placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)]
               transition-colors"
           />
@@ -65,14 +65,15 @@ export default function LoginPage() {
             type="submit"
             disabled={loading || !name.trim()}
             className="w-full py-4 rounded-xl bg-[var(--accent)] hover:bg-[var(--accent-hover)]
-              disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold text-lg
+              disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold text-base sm:text-lg
               transition-colors cursor-pointer"
           >
             {loading ? "Entrando..." : "Entrar 🚀"}
           </button>
         </form>
 
-        <div className="mt-10 flex flex-col items-center gap-3">
+        {/* QR code: only useful on desktop where users aren't already on their phone */}
+        <div className="hidden sm:flex mt-10 flex-col items-center gap-3">
           <div className="p-3 bg-white rounded-xl">
             <QRCodeSVG
               value="https://com-builders.vercel.app"

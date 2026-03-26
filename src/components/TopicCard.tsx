@@ -25,11 +25,11 @@ interface TopicCardProps {
 export function TopicCard({ topic, phase, currentUserId, isVoted, onClaim, onVote, rank }: TopicCardProps) {
   if (phase === "voting") {
     return (
-      <div className="topic-card flex items-center gap-4 p-4 rounded-xl bg-[var(--bg-card)] border border-[var(--border)]
+      <div className="topic-card flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl bg-[var(--bg-card)] border border-[var(--border)]
         hover:bg-[var(--bg-card-hover)] transition-colors">
         {/* Rank */}
         {rank !== undefined && (
-          <div className={`text-3xl font-bold w-12 text-center shrink-0 ${
+          <div className={`text-2xl sm:text-3xl font-bold w-8 sm:w-12 text-center shrink-0 ${
             rank === 1 ? "text-[var(--orange)]" : rank === 2 ? "text-gray-400" : rank === 3 ? "text-amber-700" : "text-[var(--text-muted)]"
           }`}>
             {rank}
@@ -38,20 +38,20 @@ export function TopicCard({ topic, phase, currentUserId, isVoted, onClaim, onVot
 
         {/* Content */}
         <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-lg truncate">{topic.title}</h3>
+          <h3 className="font-semibold text-base sm:text-lg leading-snug">{topic.title}</h3>
           {topic.description && (
             <p className="text-[var(--text-muted)] text-sm mt-1 line-clamp-2">{topic.description}</p>
           )}
-          <p className="text-[var(--text-muted)] text-sm mt-2">
-            🎙️ Speaker: <span className="text-[var(--text)]">{topic.speaker_name}</span>
+          <p className="text-[var(--text-muted)] text-sm mt-1.5">
+            🎙️ <span className="text-[var(--text)]">{topic.speaker_name}</span>
           </p>
         </div>
 
-        {/* Vote */}
+        {/* Vote button - minimum 44px touch target */}
         <div className="flex flex-col items-center gap-1 shrink-0">
           <button
             onClick={onVote}
-            className={`w-16 h-16 rounded-xl flex flex-col items-center justify-center transition-all cursor-pointer ${
+            className={`w-14 h-14 sm:w-16 sm:h-16 rounded-xl flex flex-col items-center justify-center transition-all cursor-pointer ${
               isVoted
                 ? "bg-[var(--accent)] text-white"
                 : "bg-[var(--bg)] border border-[var(--border)] hover:border-[var(--accent)] text-[var(--text-muted)] hover:text-[var(--accent)]"
@@ -69,31 +69,29 @@ export function TopicCard({ topic, phase, currentUserId, isVoted, onClaim, onVot
 
   // Submission phase card
   return (
-    <div className="topic-card p-4 rounded-xl bg-[var(--bg-card)] border border-[var(--border)]
+    <div className="topic-card p-3 sm:p-4 rounded-xl bg-[var(--bg-card)] border border-[var(--border)]
       hover:bg-[var(--bg-card-hover)] transition-colors">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0 flex-1">
-          <h3 className="font-semibold text-lg">{topic.title}</h3>
+          <h3 className="font-semibold text-base sm:text-lg leading-snug">{topic.title}</h3>
           {topic.description && (
             <p className="text-[var(--text-muted)] text-sm mt-1">{topic.description}</p>
           )}
-          <div className="flex items-center gap-3 mt-3 text-sm text-[var(--text-muted)]">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-2 text-sm text-[var(--text-muted)]">
             <span>por {topic.proposed_by_name}</span>
             {topic.speaker_name && topic.type === "speaker_led" && (
-              <>
-                <span className="text-[var(--border)]">|</span>
-                <span className="text-[var(--green)]">🎙️ Speaker: {topic.speaker_name}</span>
-              </>
+              <span className="text-[var(--green)]">🎙️ {topic.speaker_name}</span>
             )}
           </div>
         </div>
 
-        {/* Claim button for orphan topics */}
+        {/* Claim button for orphan topics - min 44px height touch target */}
         {topic.type === "orphan" && topic.proposed_by !== currentUserId && (
           <button
             onClick={onClaim}
-            className="px-4 py-2 rounded-lg bg-[var(--green)]/15 text-[var(--green)]
-              hover:bg-[var(--green)]/25 font-medium text-sm transition-colors shrink-0 cursor-pointer"
+            className="px-3 sm:px-4 py-2.5 rounded-lg bg-[var(--green)]/15 text-[var(--green)]
+              hover:bg-[var(--green)]/25 font-medium text-sm transition-colors shrink-0 cursor-pointer
+              min-h-[44px] flex items-center"
           >
             ¡La doy yo! 🙌
           </button>
