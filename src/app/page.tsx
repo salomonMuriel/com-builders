@@ -27,6 +27,7 @@ export default function LoginPage() {
         return;
       }
 
+      localStorage.setItem("show_tutorial", "1");
       router.push("/board");
     } catch {
       setError("Algo salió mal, intenta de nuevo");

@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { TopicCard } from "@/components/TopicCard";
 import { NewTopicModal } from "@/components/NewTopicModal";
+import { TutorialModal } from "@/components/TutorialModal";
 
 interface User {
   id: string;
@@ -32,6 +33,7 @@ export default function BoardPage() {
   const [phase, setPhase] = useState<"submission" | "voting">("submission");
   const [myVotes, setMyVotes] = useState<Set<string>>(new Set());
   const [modalOpen, setModalOpen] = useState<ModalType>(null);
+  const [showTutorial, setShowTutorial] = useState(false);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
@@ -70,6 +72,13 @@ export default function BoardPage() {
     const interval = setInterval(fetchData, 2000);
     return () => clearInterval(interval);
   }, [fetchData]);
+
+  useEffect(() => {
+    if (localStorage.getItem("show_tutorial") === "1") {
+      localStorage.removeItem("show_tutorial");
+      setShowTutorial(true);
+    }
+  }, []);
 
   async function handleLogout() {
     await fetch("/api/auth/logout", { method: "POST" });
@@ -291,13 +300,17 @@ export default function BoardPage() {
         </div>
       )}
 
-      {/* Modal */}
+      {/* Modals */}
       {modalOpen && (
         <NewTopicModal
           type={modalOpen}
           onClose={() => setModalOpen(null)}
           onSubmit={handleCreateTopic}
         />
+      )}
+
+      {showTutorial && (
+        <TutorialModal onClose={() => setShowTutorial(false)} />
       )}
     </div>
   );
