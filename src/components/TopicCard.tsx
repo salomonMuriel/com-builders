@@ -29,8 +29,8 @@ export function TopicCard({ topic, phase, currentUserId, isVoted, onClaim, onVot
         hover:bg-[var(--bg-card-hover)] transition-colors">
         {/* Rank */}
         {rank !== undefined && (
-          <div className={`text-2xl sm:text-3xl font-bold w-8 sm:w-12 text-center shrink-0 ${
-            rank === 1 ? "text-[var(--orange)]" : rank === 2 ? "text-gray-400" : rank === 3 ? "text-amber-700" : "text-[var(--text-muted)]"
+          <div className={`text-2xl sm:text-4xl font-bold w-8 sm:w-14 text-center shrink-0 ${
+            rank === 1 ? "text-[var(--orange)]" : rank === 2 ? "text-gray-300" : rank === 3 ? "text-amber-600" : "text-[var(--text-muted)]"
           }`}>
             {rank}
           </div>
@@ -38,12 +38,12 @@ export function TopicCard({ topic, phase, currentUserId, isVoted, onClaim, onVot
 
         {/* Content */}
         <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-base sm:text-lg leading-snug">{topic.title}</h3>
+          <h3 className="font-semibold text-base sm:text-xl leading-snug text-white">{topic.title}</h3>
           {topic.description && (
-            <p className="text-[var(--text-muted)] text-sm mt-1 line-clamp-2">{topic.description}</p>
+            <p className="text-[var(--text-muted)] text-sm sm:text-base mt-1 line-clamp-2">{topic.description}</p>
           )}
-          <p className="text-[var(--text-muted)] text-sm mt-1.5">
-            🎙️ <span className="text-[var(--text)]">{topic.speaker_name}</span>
+          <p className="text-[var(--text-muted)] text-sm sm:text-base mt-1.5">
+            🎙️ <span className="text-white font-medium">{topic.speaker_name}</span>
           </p>
         </div>
 
@@ -60,7 +60,7 @@ export function TopicCard({ topic, phase, currentUserId, isVoted, onClaim, onVot
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
             </svg>
-            <span className="text-sm font-bold">{topic.vote_count}</span>
+            <span className="text-sm sm:text-base font-bold">{topic.vote_count}</span>
           </button>
         </div>
       </div>
@@ -73,14 +73,14 @@ export function TopicCard({ topic, phase, currentUserId, isVoted, onClaim, onVot
       hover:bg-[var(--bg-card-hover)] transition-colors">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0 flex-1">
-          <h3 className="font-semibold text-base sm:text-lg leading-snug">{topic.title}</h3>
+          <h3 className="font-semibold text-base sm:text-xl leading-snug text-white">{topic.title}</h3>
           {topic.description && (
-            <p className="text-[var(--text-muted)] text-sm mt-1">{topic.description}</p>
+            <p className="text-[var(--text-muted)] text-sm sm:text-base mt-1">{topic.description}</p>
           )}
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-2 text-sm text-[var(--text-muted)]">
-            <span>por {topic.proposed_by_name}</span>
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-2 text-sm sm:text-base text-[var(--text-muted)]">
+            <span>por <span className="text-white">{topic.proposed_by_name}</span></span>
             {topic.speaker_name && topic.type === "speaker_led" && (
-              <span className="text-[var(--green)]">🎙️ {topic.speaker_name}</span>
+              <span className="text-[var(--green)]">🎙️ <span className="font-medium">{topic.speaker_name}</span></span>
             )}
           </div>
         </div>

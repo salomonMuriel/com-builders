@@ -317,14 +317,14 @@ export default function BoardPage() {
             {/* Left Column - Orphan Topics */}
             <div className="flex flex-col overflow-hidden flex-1">
               <div className="px-6 py-4 border-b border-[var(--border)] shrink-0">
-                <h2 className="text-lg font-semibold flex items-center gap-2">
+                <h2 className="text-xl font-bold flex items-center gap-2 text-white">
                   <span className="w-3 h-3 rounded-full bg-[var(--orange)]" />
                   Temas solicitados 🔎
-                  <span className="text-[var(--text-muted)] font-normal text-sm ml-1">
+                  <span className="text-[var(--text-muted)] font-normal text-base ml-1">
                     ({orphanTopics.length})
                   </span>
                 </h2>
-                <p className="text-[var(--text-muted)] text-sm mt-1">
+                <p className="text-[var(--text-muted)] text-base mt-1">
                   Ideas buscando un speaker — ¡reclama una para presentar!
                 </p>
               </div>
@@ -352,14 +352,14 @@ export default function BoardPage() {
             {/* Right Column - Speaker-Led Topics */}
             <div className="flex flex-col overflow-hidden flex-1">
               <div className="px-6 py-4 border-b border-[var(--border)] shrink-0">
-                <h2 className="text-lg font-semibold flex items-center gap-2">
+                <h2 className="text-xl font-bold flex items-center gap-2 text-white">
                   <span className="w-3 h-3 rounded-full bg-[var(--green)]" />
                   Charlas con speaker 🎙️
-                  <span className="text-[var(--text-muted)] font-normal text-sm ml-1">
+                  <span className="text-[var(--text-muted)] font-normal text-base ml-1">
                     ({speakerTopics.length})
                   </span>
                 </h2>
-                <p className="text-[var(--text-muted)] text-sm mt-1">
+                <p className="text-[var(--text-muted)] text-base mt-1">
                   Charlas con speaker confirmado
                 </p>
               </div>
@@ -390,8 +390,8 @@ export default function BoardPage() {
         <div className="flex-1 overflow-y-auto">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-6 space-y-3">
             <div className="text-center mb-6 sm:mb-8">
-              <h2 className="text-xl sm:text-2xl font-bold mb-1">¡Vota por las sesiones! 🔥</h2>
-              <p className="text-[var(--text-muted)] text-sm sm:text-base">
+              <h2 className="text-xl sm:text-3xl font-bold mb-1 text-white">¡Vota por las sesiones! 🔥</h2>
+              <p className="text-[var(--text-muted)] text-sm sm:text-lg">
                 Elige las charlas que quieres ver. Se ordenan por votos en tiempo real.
               </p>
             </div>
