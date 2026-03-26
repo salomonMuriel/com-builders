@@ -90,6 +90,12 @@ export default function BoardPage() {
     fetchData();
   }
 
+  async function handleReset() {
+    if (!confirm("¿Estás seguro? Esto borra todos los temas, votos y usuarios (excepto el tuyo).")) return;
+    await fetch("/api/admin/reset", { method: "POST" });
+    fetchData();
+  }
+
   async function handleClaim(topicId: string) {
     await fetch(`/api/topics/${topicId}/claim`, { method: "POST" });
     fetchData();
@@ -185,26 +191,42 @@ export default function BoardPage() {
               Pedir charla 🙋
             </button>
             {user?.is_admin && (
-              <button
-                onClick={handleAdvancePhase}
-                className="flex-1 sm:flex-none px-4 py-2.5 rounded-lg bg-[var(--orange)]/20 text-[var(--orange)]
-                  hover:bg-[var(--orange)]/30 font-medium transition-colors cursor-pointer text-sm sm:text-base text-center"
-              >
-                Iniciar votación 🗳️
-              </button>
+              <>
+                <button
+                  onClick={handleAdvancePhase}
+                  className="flex-1 sm:flex-none px-4 py-2.5 rounded-lg bg-[var(--orange)]/20 text-[var(--orange)]
+                    hover:bg-[var(--orange)]/30 font-medium transition-colors cursor-pointer text-sm sm:text-base text-center"
+                >
+                  Iniciar votación 🗳️
+                </button>
+                <button
+                  onClick={handleReset}
+                  className="flex-1 sm:flex-none px-4 py-2.5 rounded-lg bg-[var(--red)]/20 text-[var(--red)]
+                    hover:bg-[var(--red)]/30 font-medium transition-colors cursor-pointer text-sm sm:text-base text-center"
+                >
+                  Reiniciar todo 🗑️
+                </button>
+              </>
             )}
           </div>
         )}
 
-        {/* Admin button during voting phase */}
+        {/* Admin buttons during voting phase */}
         {phase === "voting" && user?.is_admin && (
-          <div className="mt-3">
+          <div className="flex items-center gap-2 mt-3 flex-wrap">
             <button
               onClick={handleAdvancePhase}
-              className="px-4 py-2.5 rounded-lg bg-[var(--orange)]/20 text-[var(--orange)]
-                hover:bg-[var(--orange)]/30 font-medium transition-colors cursor-pointer text-sm"
+              className="flex-1 sm:flex-none px-4 py-2.5 rounded-lg bg-[var(--orange)]/20 text-[var(--orange)]
+                hover:bg-[var(--orange)]/30 font-medium transition-colors cursor-pointer text-sm text-center"
             >
               Volver a propuestas 📝
+            </button>
+            <button
+              onClick={handleReset}
+              className="flex-1 sm:flex-none px-4 py-2.5 rounded-lg bg-[var(--red)]/20 text-[var(--red)]
+                hover:bg-[var(--red)]/30 font-medium transition-colors cursor-pointer text-sm text-center"
+            >
+              Reiniciar todo 🗑️
             </button>
           </div>
         )}

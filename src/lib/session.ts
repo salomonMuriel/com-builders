@@ -21,18 +21,20 @@ export async function getSession(): Promise<SessionUser | null> {
   return rows[0] as SessionUser;
 }
 
+const ADMIN_NAMES = ["luis betancourt", "salomón muriel", "salomon muriel"];
+
 export async function createSession(name: string): Promise<{ user: SessionUser; token: string }> {
   const sql = getDb();
-  const isAdmin = name.trim().toLowerCase() === "luis betancourt";
+  const normalized = name.trim().toLowerCase();
+  const isAdmin = ADMIN_NAMES.includes(normalized);
   const token = crypto.randomUUID();
 
   if (isAdmin) {
-    // Check if Luis Betancourt already has an active session
     const existing = await sql`
-      SELECT id FROM users WHERE LOWER(name) = 'luis betancourt'
+      SELECT id FROM users WHERE LOWER(name) = ${normalized}
     `;
     if (existing.length > 0) {
-      throw new Error("Luis Betancourt ya está conectado");
+      throw new Error(`${name.trim()} ya está conectado`);
     }
   }
 
