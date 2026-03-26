@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { TopicCard } from "@/components/TopicCard";
 import { NewTopicModal } from "@/components/NewTopicModal";
 import { TutorialModal } from "@/components/TutorialModal";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 interface User {
   id: string;
@@ -164,6 +165,7 @@ export default function BoardPage() {
             <span className="text-[var(--text-muted)] text-sm hidden sm:inline truncate max-w-[120px]">
               {user?.name}
             </span>
+            <ThemeToggle />
             <button
               onClick={handleLogout}
               className="text-[var(--text-muted)] hover:text-[var(--red)] text-sm transition-colors cursor-pointer py-2 px-1"
@@ -317,7 +319,7 @@ export default function BoardPage() {
             {/* Left Column - Orphan Topics */}
             <div className="flex flex-col overflow-hidden flex-1">
               <div className="px-6 py-4 border-b border-[var(--border)] shrink-0">
-                <h2 className="text-xl font-bold flex items-center gap-2 text-white">
+                <h2 className="text-xl font-bold flex items-center gap-2 text-[var(--text)]">
                   <span className="w-3 h-3 rounded-full bg-[var(--orange)]" />
                   Temas solicitados 🔎
                   <span className="text-[var(--text-muted)] font-normal text-base ml-1">
@@ -352,7 +354,7 @@ export default function BoardPage() {
             {/* Right Column - Speaker-Led Topics */}
             <div className="flex flex-col overflow-hidden flex-1">
               <div className="px-6 py-4 border-b border-[var(--border)] shrink-0">
-                <h2 className="text-xl font-bold flex items-center gap-2 text-white">
+                <h2 className="text-xl font-bold flex items-center gap-2 text-[var(--text)]">
                   <span className="w-3 h-3 rounded-full bg-[var(--green)]" />
                   Charlas con speaker 🎙️
                   <span className="text-[var(--text-muted)] font-normal text-base ml-1">
@@ -390,7 +392,7 @@ export default function BoardPage() {
         <div className="flex-1 overflow-y-auto">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-6 space-y-3">
             <div className="text-center mb-6 sm:mb-8">
-              <h2 className="text-xl sm:text-3xl font-bold mb-1 text-white">¡Vota por las sesiones! 🔥</h2>
+              <h2 className="text-xl sm:text-3xl font-bold mb-1 text-[var(--text)]">¡Vota por las sesiones! 🔥</h2>
               <p className="text-[var(--text-muted)] text-sm sm:text-lg">
                 Elige las charlas que quieres ver. Se ordenan por votos en tiempo real.
               </p>
