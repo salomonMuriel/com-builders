@@ -30,12 +30,8 @@ export async function createSession(name: string): Promise<{ user: SessionUser; 
   const token = crypto.randomUUID();
 
   if (isAdmin) {
-    const existing = await sql`
-      SELECT id FROM users WHERE LOWER(name) = ${normalized}
-    `;
-    if (existing.length > 0) {
-      throw new Error(`${name.trim()} ya está conectado`);
-    }
+    // Remove any stale sessions for this admin so they can always log back in
+    await sql`DELETE FROM users WHERE LOWER(name) = ${normalized}`;
   }
 
   const rows = await sql`
