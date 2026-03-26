@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { QRCodeSVG } from "qrcode.react";
 
 export default function LoginPage() {
   const [name, setName] = useState("");
@@ -70,6 +71,17 @@ export default function LoginPage() {
             {loading ? "Entrando..." : "Entrar 🚀"}
           </button>
         </form>
+
+        <div className="mt-10 flex flex-col items-center gap-3">
+          <div className="p-3 bg-white rounded-xl">
+            <QRCodeSVG
+              value="https://com-builders.vercel.app"
+              size={160}
+              level="M"
+            />
+          </div>
+          <p className="text-[var(--text-muted)] text-sm">Escanea para unirte desde tu celular 📱</p>
+        </div>
       </div>
     </div>
   );
