@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0a0a0f;
+  --bg-card: #14141f;
+  --bg-card-hover: #1a1a2e;
+  --border: #2a2a3e;
+  --text: #e8e8f0;
+  --text-muted: #8888a0;
+  --accent: #6c5ce7;
+  --accent-hover: #7c6cf7;
+  --green: #00b894;
+  --green-hover: #00d4aa;
+  --orange: #fdcb6e;
+  --red: #e17055;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Smooth transitions for reordering */
+.topic-card {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Pulse animation for vote count changes */
+@keyframes pulse-vote {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.vote-pulse {
+  animation: pulse-vote 0.3s ease;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
